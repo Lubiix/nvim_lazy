@@ -1,19 +1,19 @@
 return {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
-				"roxma/LanguageServer-php-neovim",
-        "saadparwaiz1/cmp_luasnip",
-				"rafamadriz/friendly-snippets",
-        "j-hui/fidget.nvim",
-    },
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/nvim-cmp",
+		"L3MON4D3/LuaSnip",
+		"roxma/LanguageServer-php-neovim",
+		"saadparwaiz1/cmp_luasnip",
+		"rafamadriz/friendly-snippets",
+		"j-hui/fidget.nvim",
+	},
 
 	config = function()
 		local cmp = require('cmp')
@@ -29,33 +29,33 @@ return {
 			local opts = { noremap = true, silent = true }
 			local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-            -- Keybindings pour les fonctionnalités LSP
-            buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-            buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-            buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-            buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-            buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        end
+			-- Keybindings pour les fonctionnalités LSP
+			buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+			buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+			buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+			buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+			buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+			buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+		end
 
-        require("fidget").setup({})
-        require("mason").setup()
-        require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-                "rust_analyzer",
-								"ts_ls",
-								"intelephense",
-								"cssls",
-								"html",
-            },
-            handlers = {
-                function(server_name) -- default handler (optional)
+		require("fidget").setup({})
+		require("mason").setup()
+		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"lua_ls",
+				"rust_analyzer",
+				"ts_ls",
+				"intelephense",
+				"cssls",
+				"html",
+			},
+			handlers = {
+				function(server_name) -- default handler (optional)
 
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+					require("lspconfig")[server_name].setup {
+						capabilities = capabilities
+					}
+				end,
 
 				["lua_ls"] = function()
 					local lspconfig = require("lspconfig")
@@ -75,6 +75,8 @@ return {
 				["ts_ls"] = function ()
 					local lspconfig = require("lspconfig")
 					lspconfig.ts_ls.setup {
+						root_dir = lspconfig.util.root_pattern("package.json","tsconfig.json",".git"),
+						autostart = true,
 						capabilities = capabilities,
 						on_attach = on_attach,
 					}
@@ -95,24 +97,24 @@ return {
 					}
 				end,
 
-				 ["cssls"] = function()
-            require("lspconfig").cssls.setup {
-                capabilities = capabilities,
-                on_attach = on_attach,
-            }
-        end,
+				["cssls"] = function()
+					require("lspconfig").cssls.setup {
+						capabilities = capabilities,
+						on_attach = on_attach,
+					}
+				end,
 
-        ["html"] = function()
-            require("lspconfig").html.setup {
-                capabilities = capabilities,
-                on_attach = on_attach,
-            }
-        end,
+				["html"] = function()
+					require("lspconfig").html.setup {
+						capabilities = capabilities,
+						on_attach = on_attach,
+					}
+				end,
 
 			}
 		})
 
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
+		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 		cmp.setup({
 			snippet = {
@@ -138,17 +140,17 @@ return {
 			}
 		})
 
-        vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
-    end
+		vim.diagnostic.config({
+			-- update_in_insert = true,
+			float = {
+				focusable = false,
+				style = "minimal",
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
+		})
+	end
 }
 
