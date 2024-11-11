@@ -46,6 +46,8 @@ return {
                 "rust_analyzer",
 								"ts_ls",
 								"intelephense",
+								"cssls",
+								"html",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -92,6 +94,20 @@ return {
 						},
 					}
 				end,
+
+				 ["cssls"] = function()
+            require("lspconfig").cssls.setup {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            }
+        end,
+
+        ["html"] = function()
+            require("lspconfig").html.setup {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            }
+        end,
 
 			}
 		})
