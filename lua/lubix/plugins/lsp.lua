@@ -44,7 +44,6 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-								--"phpactor",
 								"ts_ls",
 								"intelephense",
             },
@@ -106,9 +105,9 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-				['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-				['<C-y>'] = cmp.mapping.confirm({ select = true }),
+				['<C-o>'] = cmp.mapping.select_prev_item(cmp_select),
+				['<C-p>'] = cmp.mapping.select_next_item(cmp_select),
+				['<CR>'] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
