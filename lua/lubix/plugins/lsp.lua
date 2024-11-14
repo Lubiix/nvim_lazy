@@ -82,7 +82,7 @@ return {
 					}
 				end,
 
-				["tsserver"] = function ()
+				--[[["tsserver"] = function ()
 					local lspconfig = require("lspconfig")
 					lspconfig.tsserver.setup {
 						root_dir = lspconfig.util.root_pattern("package.json","tsconfig.json",".git"),
@@ -90,7 +90,7 @@ return {
 						capabilities = capabilities,
 						on_attach = on_attach,
 					}
-				end,
+				end,--]]
 
 				["intelephense"] = function()
 					local lspconfig = require("lspconfig")
