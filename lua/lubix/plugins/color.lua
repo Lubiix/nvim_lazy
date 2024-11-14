@@ -13,5 +13,7 @@ return {
 			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 			vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-    end,}
+			--vim.opt.colorcolumn = "80"
+			--vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#555555]]
+		end,}
 }
