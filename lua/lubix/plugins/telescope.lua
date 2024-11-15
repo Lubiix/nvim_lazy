@@ -8,8 +8,15 @@ return {
     },
 
     config = function()
-        require('telescope').setup({})
-
+        require('telescope').setup({
+			defaults = {
+				preview = false,
+				layout_config = {
+					width = 0.53,
+					height = 0.6,
+				},
+			},
+		})
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<C-p>', builtin.git_files, {})
