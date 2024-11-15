@@ -4,7 +4,7 @@ return {
   cmd = { "Git", "G" }, -- Optionally, load only on specific commands
   keys = { -- Optionally, map specific keys for fugitive commands
     { "<leader>gs", ":Git<CR>", desc = "Git status" },
-	{ "<leader>gp", ":Git push<CR>", desc = "Git push" }, -- Pousser les changements
+	{ "<leader>gp", ":Git push<CR>", desc = "Git push -u origin" }, -- Pousser les changements
     { "<leader>gl", ":Git pull<CR>", desc = "Git pull" }, -- Récupérer les changements
   },
   config = function()
