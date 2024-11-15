@@ -13,6 +13,7 @@ vim.api.nvim_set_keymap('n', 'z', 'w', {noremap = true})
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
+vim.keymap.set("n", "<leader>q", ":q<CR>")
 --Cursor stay in the middle when searching
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
