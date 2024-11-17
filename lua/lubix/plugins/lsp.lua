@@ -36,6 +36,10 @@ return {
 			--buf_set_keymap('n', '<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 			buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 			buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+			buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+			buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+			buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
 		end
 
 		require("fidget").setup({})
@@ -61,6 +65,7 @@ return {
 					local lspconfig = require("lspconfig")
 					lspconfig.lua_ls.setup {
 						capabilities = capabilities,
+						on_attach = on_attach,
 						settings = {
 							Lua = {
 								diagnostics = {
@@ -95,8 +100,11 @@ return {
 				["intelephense"] = function()
 					local lspconfig = require("lspconfig")
 					lspconfig.intelephense.setup {
-						capabilities = capabilities,
+						cmd = { "intelephense", "--stdio" },
+						root_dir = lspconfig.util.root_pattern(".git", "composer.json"),
+						autostart = true,
 						on_attach = on_attach,
+						capabilities = capabilities,
 						settings = {
 							intelephense = {
 								files = {
