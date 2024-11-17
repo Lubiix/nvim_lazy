@@ -25,6 +25,15 @@ vim.keymap.set("n", "<leader>k", "<C-u>zz")
 -- Nav window 
 vim.keymap.set('n', '<leader>h', '<C-w>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "*", "*N", { noremap = true })
+--vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux tmux-sessionizer<CR>")
+--vim.keymap.set('n', '<C-f>', '<cmd>silent !bash -i -c "tmux-sessionizer"<CR>')
+--vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww bash ~/.config/nvim/tmux-sessionizer.sh<CR>")
+--vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux ~/.config/nvim/tmux-sessionizer.sh<CR>")
+--vim.api.nvim_set_keymap('n', '<C-f>', ':silent !/home/lubix/.config/nvim/tmux-sessionizer.sh<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<C-f>", function()
+    vim.fn.system("tmux neww bash -c 'bash ~/.config/nvim/tmux-sessionizer.sh'")
+end, { silent = true })
+
 
 -- Only for windows
 --vim.api.nvim_set_keymap('n', '<C-q>', '<C-v>', { noremap = true })
