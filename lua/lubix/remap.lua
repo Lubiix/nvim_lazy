@@ -31,7 +31,7 @@ vim.api.nvim_set_keymap("n", "*", "*N", { noremap = true })
 --vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux ~/.config/nvim/tmux-sessionizer.sh<CR>")
 --vim.api.nvim_set_keymap('n', '<C-f>', ':silent !/home/lubix/.config/nvim/tmux-sessionizer.sh<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<C-f>", function()
-    vim.fn.system("tmux neww bash -c 'bash ~/.config/nvim/tmux-sessionizer.sh'")
+    vim.fn.system("tmux neww zsh -c 'bash ~/.config/nvim/tmux-sessionizer.sh'")
 end, { silent = true })
 
 

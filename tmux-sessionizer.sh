@@ -1,16 +1,7 @@
-#!/bin/bash
+#!/bin/zsh
 echo "Current PATH: $PATH"
 echo "Current shell: $SHELL"
 
-if [ -t 1 ]; then
-    echo "Running in an interactive terminal."
-else
-    echo "No interactive terminal. Exiting."
-    exit 1
-fi
-
-echo "step0"
-set -x
 switch_to() {
     if [[ -z $TMUX ]]; then
         tmux attach-session -t $1
@@ -18,7 +9,7 @@ switch_to() {
         tmux switch-client -t $1
     fi
 }
-echo "step1"
+
 has_session() {
     tmux list-sessions | grep -q "^$1:"
 }
@@ -31,7 +22,6 @@ hydrate() {
     fi
 }
 
-echo "step2"
 
 if [[ $# -eq 1 ]]; then
 	echo "selected"
@@ -41,12 +31,12 @@ else
     # PR
     #selected=$(find ~/ ~/personal ~/personal/dev/env/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 	echo "mydir"
-    selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    #selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
-	echo "step3"
 fi
 
 selected_name=$(basename "$selected" | tr . _)
@@ -62,5 +52,5 @@ if ! has_session $selected_name; then
     tmux new-session -ds $selected_name -c $selected
     hydrate $selected_name $selected
 fi
-echo "step4"
+
 switch_to $selected_name
