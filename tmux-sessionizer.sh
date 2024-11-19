@@ -1,6 +1,4 @@
 #!/bin/zsh
-echo "Current PATH: $PATH"
-echo "Current shell: $SHELL"
 
 switch_to() {
     if [[ -z $TMUX ]]; then
@@ -24,15 +22,14 @@ hydrate() {
 
 
 if [[ $# -eq 1 ]]; then
-	echo "selected"
     selected=$1
 else
     # If someone wants to make this extensible, i'll accept
     # PR
     #selected=$(find ~/ ~/personal ~/personal/dev/env/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-	echo "mydir"
     #selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    #selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
