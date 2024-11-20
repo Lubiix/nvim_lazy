@@ -115,6 +115,16 @@ return {
 					}
 				end,
 
+				["kotlin_language_server"] = function()
+					local lspconfig = require("lspconfig")
+					require("lspconfig").kotlin_language_server.setup {
+						root_dir = lspconfig.util.root_pattern("build.gradle", "settings.gradle", ".git"),
+						autostart = true,
+						on_attach = on_attach,
+						capabilities = capabilities,
+					}
+				end,
+
 				["cssls"] = function()
 					require("lspconfig").cssls.setup {
 						capabilities = capabilities,
@@ -143,7 +153,7 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				['<C-o>'] = cmp.mapping.select_prev_item(cmp_select),
 				['<C-p>'] = cmp.mapping.select_next_item(cmp_select),
-				['<CR>'] = cmp.mapping.confirm({ select = true }),
+				['<tab>'] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
