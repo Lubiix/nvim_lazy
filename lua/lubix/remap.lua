@@ -22,6 +22,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>j", "<C-d>zz")
 vim.keymap.set("n", "<leader>k", "<C-u>zz")
 
+-- Open file
+vim.keymap.set("n", "<leader>of", ":!open % &<CR><CR>")
+
 -- Nav window 
 vim.keymap.set('n', '<leader>h', '<C-w>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "*", "*N", { noremap = true })

@@ -39,6 +39,8 @@ return {
 			buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 			buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 			buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+			buf_set_keymap('n', '{d', '<cmd>cprev<CR>', opts)
+	        buf_set_keymap('n', '{d', '<cmd>cnext<CR>', opts)
 
 		end
 

@@ -28,8 +28,8 @@ else
     # PR
     #selected=$(find ~/ ~/personal ~/personal/dev/env/.config -mindepth 1 -maxdepth 1 -type d | fzf)
     #selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    #selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    selected=$(find ~/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    #selected=$(find ~/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
