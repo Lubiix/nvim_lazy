@@ -26,10 +26,17 @@ if [[ $# -eq 1 ]]; then
 else
     # If someone wants to make this extensible, i'll accept
     # PR
-    #selected=$(find ~/ ~/personal ~/personal/dev/env/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    #selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
-    #selected=$(find ~/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+	  # Détecter l'OS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+		selected=$(find ~/Developpement ~/Developpement/projet_en_cours ~/Developpement/projet_en_cours/Android ~/Developpement/projet_en_cours/1.GHXAdmin ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    elif grep -qi microsoft /proc/version; then
+        # WSL (Windows)
+        selected=$(find /mnt/j/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    else
+        # Autre OS (fallback)
+        selected=$(find ~/Developpement ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    fi
 fi
 
 if [[ -z $selected ]]; then
